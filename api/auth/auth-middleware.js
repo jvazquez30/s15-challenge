@@ -31,7 +31,7 @@ async function checkUsernameandPassword(req, res, next) {
  async function checkProfileExists(req, res, next) {
   try {
     const { username } = req.body
-    const user = await User.findBy({username})
+    const user = await User.findBy({username}).first()
 
     if (user) {
       req.user = user
