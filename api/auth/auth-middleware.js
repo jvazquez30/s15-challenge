@@ -1,15 +1,20 @@
 const User = require('./auth-model')
 
 async function checkUsernameFree(req, res, next) {
+  const { username } = req.body;
+
+  if (!username) {
+    return next({ status: 400, message: "username and password required" });
+  }
+
   try {
-    const users = await User.findBy({ username: req.body.username })
-    if (!users.length) {
-      next()
-    } else {
-      next({ status: 422, message: "username taken" })
+    const user = await User.findBy({ username }).first();
+    if (user) {
+      return next({ status: 409, message: "username taken" });
     }
-  } catch (error) {
-    next(error)
+    next();
+  } catch (err) {
+    next(err);
   }
 }
 
