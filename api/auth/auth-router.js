@@ -60,7 +60,7 @@ router.post('/login', checkProfileExists, checkUsernameandPassword, (req, res, n
       next({ status: 401, message: 'Invalid credentials' });
     }
   } else {
-    next({ status: 400, message: 'Invalid credentials' });
+    next({ status: 400, message: 'username and password required' });
   }
 });
   /*
