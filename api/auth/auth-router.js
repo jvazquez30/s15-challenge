@@ -46,7 +46,7 @@ router.post('/register', checkUsernameandPassword, checkUsernameFree, (req, res,
   */
 });
 
-router.post('/login', checkProfileExists, (req, res, next) => {
+router.post('/login', checkProfileExists, checkUsernameandPassword, (req, res, next) => {
   console.log("User object:", req.user); // Debugging log
   if (req.user && req.user.password) {
     if (bcrypt.compareSync(req.body.password, req.user.password)) {
