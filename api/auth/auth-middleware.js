@@ -19,8 +19,7 @@ async function checkUsernameFree(req, res, next) {
 }
 
 async function checkUsernameandPassword(req, res, next) {
-  const password = req.body.password
-  const username = req.body.username
+ const {username, password } = req.body
 
   if (!password || !username) {
     next({ status: 422, message: "username and password required"})
