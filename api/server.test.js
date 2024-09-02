@@ -35,12 +35,12 @@ describe('[POST] /api/auth/register', () => {
 })
 
 describe('[POST] /api/auth/login', () => {
-  it('[1] responds with the correct message on invalid credentials', async () => {
+  it('[1] responds with the correct message on username and password required', async () => {
     const res = await request(server).post('/api/auth/login').send({ username: 'bob', password: '' })
-    expect(res.body.message).toMatch('Invalid credentials')
+    expect(res.body.message).toMatch('username and password required')
   },)
   it('[1] responds with the correct message on invalid credentials', async () => {
     const res = await request(server).post('/api/auth/login').send({ username: '', password: '1234' })
-    expect(res.body.message).toMatch('Invalid credentials')
+    expect(res.body.message).toMatch('username and password required')
   },)
 })
