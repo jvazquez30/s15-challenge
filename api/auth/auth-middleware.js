@@ -22,7 +22,7 @@ async function checkUsernameandPassword(req, res, next) {
  const {username, password } = req.body
 
   if (!password || !username) {
-    next({ status: 422, message: "username and password required"})
+    next({ status: 400, message: "username and password required"})
   } else {
     next()
   }
